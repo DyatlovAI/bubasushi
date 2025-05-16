@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                           item,
                           style: const TextStyle(
                             fontSize: 13,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.normal,
                           ),
                         ),
                       );
@@ -137,83 +137,97 @@ class _HomePageState extends State<HomePage> {
           final menuCategories = snapshot.data!;
           final selectedCategory = menuCategories[selectedTab];
           final items = selectedCategory.items;
-
-          return Container(
-            decoration: const BoxDecoration(
-              color: AppColors.background,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(24),
-                topRight: Radius.circular(24),
+          return SingleChildScrollView(
+            child: Container(
+              decoration: const BoxDecoration(
+                color: AppColors.background,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(24),
+                  topRight: Radius.circular(24),
+                ),
               ),
-            ),
-            child: Column(
-              children: [
-                const SizedBox(height: 30),
-                SizedBox(
-                  height: 180,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      const SizedBox(width: 10),
-                      Image.asset('assets/images/promo1.png'),
-                      const SizedBox(width: 10),
-                      Image.asset('assets/images/promo.png'),
-                      const SizedBox(width: 10),
-                      Image.asset('assets/images/promo2.png'),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 30),
-                TabBarSection(
-                  categories: menuCategories,
-                  selectedIndex: selectedTab,
-                  onTabSelected: (index) {
-                    setState(() {
-                      selectedTab = index;
-                    });
-                  },
-                ),
-                const SizedBox(height: 10),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: GridView.count(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 30),
+                    SizedBox(
+                      height: 180,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          const SizedBox(width: 10),
+                          Image.asset('assets/images/promo1.png'),
+                          const SizedBox(width: 10),
+                          Image.asset('assets/images/promo.png'),
+                          const SizedBox(width: 10),
+                          Image.asset('assets/images/promo2.png'),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    TabBarSection(
+                      categories: menuCategories,
+                      selectedIndex: selectedTab,
+                      onTabSelected: (index) {
+                        setState(() {
+                          selectedTab = index;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    GridView.count(
                       crossAxisCount: 2,
                       crossAxisSpacing: 8,
                       mainAxisSpacing: 10,
-                      childAspectRatio: 0.7,
+                      childAspectRatio: 0.65,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       children: items.map((item) => ProductCard(item: item)).toList(),
                     ),
-                  ),
+                    const SizedBox(height: 20),
+                  ],
                 ),
-              ],
+              ),
             ),
           );
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Color(0xFF4E4F50),
-        items: [
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/images/menu1.png', width: 50, height: 40),
-            label: 'Меню',
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white, // Белый фон
+          border: Border(
+            top: BorderSide(
+              color: Color(0xFFE0E0E0), // Светло-серая линия сверху
+              width: 1,
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/images/menu2.png',width: 50, height: 40),
-            label: 'Акции',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/images/menu3.png', width: 40, height: 40),
-            label: 'Рестораны',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/images/menu4.png', width: 40, height: 40),
-            label: 'Корзина',
-          ),
-        ],
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.white, // Обязательно указываем и здесь
+          currentIndex: 0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Color(0xFF4E4F50),
+          items: [
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/menu1.png', width: 35, height: 25),
+              label: 'Меню',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/menu2.png', width: 35, height: 25),
+              label: 'Акции',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/menu3.png', width: 35, height: 25),
+              label: 'Рестораны',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/menu4.png', width: 35, height: 25),
+              label: 'Корзина',
+            ),
+          ],
+        ),
       ),
     );
   }

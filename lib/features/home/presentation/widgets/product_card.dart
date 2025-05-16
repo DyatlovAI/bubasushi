@@ -31,7 +31,7 @@ class ProductCard extends StatelessWidget {
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Image.asset(
-                    'assets/images/ssset.png', // Заглушка на случай ошибки загрузки
+                    'assets/images/ssset.png',
                     width: double.infinity,
                     height: 150,
                     fit: BoxFit.cover,
@@ -48,8 +48,8 @@ class ProductCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          item.name,
-                          style: AppTextStyles.header1.copyWith(fontSize: 16),
+                          item.name, maxLines: 2,
+                          style: AppTextStyles.header1.copyWith(fontSize: 14),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -115,20 +115,20 @@ void showProductDetailSheet(BuildContext context, MenuItem item) {
                 child: Image.network(
                   item.buttonImageUrl,
                   width: screenWidth,
-                  height: 300,
+                  height: 250,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
                     return Image.asset(
                       'assets/images/ssset.png',
                       width: screenWidth,
-                      height: 300,
+                      height: 250,
                       fit: BoxFit.cover,
                     );
                   },
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 320, 16, 24),
+                padding: const EdgeInsets.fromLTRB(16, 270, 16, 24),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -155,7 +155,7 @@ void showProductDetailSheet(BuildContext context, MenuItem item) {
                       const SizedBox(height: 16),
                       Container(
                         width: double.infinity,
-                        padding: const EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                           color: AppColors.cardBg,
                           borderRadius: BorderRadius.circular(16),
@@ -166,7 +166,7 @@ void showProductDetailSheet(BuildContext context, MenuItem item) {
                           style: AppTextStyles.body1,
                         ),
                       ),
-                      const SizedBox(height: 32),
+                      const SizedBox(height: 24),
                       Container(
                         height: 1,
                         width: double.infinity,
@@ -178,11 +178,11 @@ void showProductDetailSheet(BuildContext context, MenuItem item) {
                         children: [
                           Text(
                             item.name,
-                            style: AppTextStyles.body1.copyWith(fontSize: 18),
+                            style: AppTextStyles.body1.copyWith(fontSize: 14),
                           ),
                           Text(
                             '${item.price}₽',
-                            style: AppTextStyles.price.copyWith(fontSize: 18),
+                            style: AppTextStyles.price.copyWith(fontSize: 14),
                           ),
                         ],
                       ),
@@ -200,7 +200,7 @@ void showProductDetailSheet(BuildContext context, MenuItem item) {
                           ),
                           child: const Text(
                             'В корзину',
-                            style: TextStyle(color: Colors.white, fontSize: 18),
+                            style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                         ),
                       ),

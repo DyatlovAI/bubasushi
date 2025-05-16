@@ -3,10 +3,10 @@ import 'colors.dart';
 
 class AppTextStyles {
   static const header1 = TextStyle(
-      fontSize: 24, fontWeight: FontWeight.bold, color: AppColors.textPrimary);
+      fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.textPrimary);
 
   static const body1 = TextStyle(
-      fontSize: 16, color: AppColors.textSecondary);
+      fontSize: 12, color: AppColors.textSecondary);
 
   static const caption = TextStyle(
       fontSize: 14, color: AppColors.textMuted);
@@ -15,5 +15,5 @@ class AppTextStyles {
       fontSize: 16, color: AppColors.textMuted);
 
   static const price = TextStyle(
-      fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.primary);
+      fontSize: 16, color: AppColors.textPrimary);
 }
